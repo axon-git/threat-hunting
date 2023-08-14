@@ -1,5 +1,5 @@
 -- The query identifies elevated processes executed using UAC bypass through an auto-approval enabled COM interface (CMSTPLUA)
--- This activity was observed by the team in a recent InfoStealer campaign targeting Mexico
+-- This activity was observed by the team in a recent InfoStealer campaign targeting Mexico (August 2023)
 -- The query joins the relevant DllHost.exe hosting the COM interface with its RPC client process that initiated the UAC bypass
 -- The query joins the relevant DllHost.exe with its child processes, which are the target payloads to be run elevated while bypassing UAC
 -- The query can be adjusted to the preferred EDR solution
