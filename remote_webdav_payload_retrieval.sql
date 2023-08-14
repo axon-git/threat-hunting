@@ -1,5 +1,5 @@
 -- The query looks for instances of remote file referencing through WebDav, an artifact that may indicate payload retrieval
--- This activity was observed by the team in a recent InfoStealer campaign targeting Mexico
+-- This activity was observed by the team in a recent InfoStealer campaign targeting Mexico (August 2023)
 -- When a file is referenced via WebDav, the Rundll is spawned by svchost.exe (hosting the WebClient service) with the following command line structure:
 -- rundll32.exe C:\Windows\system32\davclnt.dll,DavSetCookie <remote_host> http://<remote_host>/<path>/<to>/<payload>
 -- The query uses Hunters' EDR Process Creation Unified Scheme and filters out internal IPs
