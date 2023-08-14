@@ -1,5 +1,5 @@
 -- The query searches for a UAC bypass method that changes the value of HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ConsentPromptBehaviorAdmin to 0 (=Elevate without prompting)
--- This activity was observed by the team in a recent InfoStealer campaign targeting Mexico
+-- This activity was observed by the team in a recent InfoStealer campaign targeting Mexico (August 2023)
 -- The query can be adjusted to the preferred EDR solution
 SELECT DISTINCT 
     EVENT_TIME,
