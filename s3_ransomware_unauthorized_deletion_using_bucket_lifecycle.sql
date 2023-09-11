@@ -15,7 +15,7 @@ SELECT
     EVENT_SOURCE,
     SOURCE_IP_ADDRESS,
     USER_AGENT,
-    BUCKET_NAME,
+    REQUEST_PARAMETERS:bucketName BUCKET_NAME,
     REQUEST_PARAMETERS:LifecycleConfiguration:Rule:Expiration:Days AS expiration_days,
     REQUEST_PARAMETERS:LifecycleConfiguration:Rule:Status AS status,
     ERROR_CODE
