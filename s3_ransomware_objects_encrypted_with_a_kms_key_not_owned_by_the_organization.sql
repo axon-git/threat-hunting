@@ -10,7 +10,7 @@ SELECT
     user_agent,
     user_identity_type,
     user_identity_arn,
-    bucket_name,
+    REQUEST_PARAMETERS:bucketName bucket_name,
     SUM(CASE
         WHEN response_kms_key IS NULL OR error_code IS NOT NULL THEN 0
         ELSE 1
