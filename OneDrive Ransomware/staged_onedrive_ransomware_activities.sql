@@ -68,10 +68,11 @@ SELECT COLLECTION_STAGE.USER_ID                       AS USER_ID,
        ARRAY_DISTINCT(ARRAY_CAT(ENCRYPTION_STAGE.INVOLVED_FILES, ENCRYPTION_STAGE.INVOLVED_FILES))
                                                       AS INVOLVED_FILES
 FROM ENCRYPTION_STAGE
-INNER JOIN COLLECTION_STAGE ON -- stages have a time difference of up to 7 days
-                               ENCRYPTION_STAGE.START_TIME - interval '7 days' <= COLLECTION_STAGE.START_TIME AND
-                               COLLECTION_STAGE.END_TIME <= ENCRYPTION_STAGE.END_TIME AND
-                               -- the performing user is the same in both stages
-                               COLLECTION_STAGE.USER_ID = ENCRYPTION_STAGE.USER_ID AND
-                               -- files correlation between the stages exceeds 75% match of file between the stages, comparing the intersected involved files and the 'smaller' stage' involved files
-                               ARRAY_SIZE(ARRAY_INTERSECTION(COLLECTION_STAGE.INVOLVED_FILES, ENCRYPTION_STAGE.INVOLVED_FILES)) >= MIN(ARRAY_SIZE(COLLECTION_STAGE.INVOLVED_FILES), ARRAY_SIZE(ENCRYPTION_STAGE.INVOLVED_FILES)) * 0.75
+INNER JOIN COLLECTION_STAGE ON 
+  -- stages have a time difference of up to 7 days
+  ENCRYPTION_STAGE.START_TIME - interval '7 days' <= COLLECTION_STAGE.START_TIME AND
+  -- the performing user is the same in both stages
+  COLLECTION_STAGE.END_TIME <= ENCRYPTION_STAGE.END_TIME AND
+  COLLECTION_STAGE.USER_ID = ENCRYPTION_STAGE.USER_ID AND
+  -- files correlation between the stages exceeds 75% match of file between the stages, comparing the intersected involved files and the 'smaller' stage' involved files
+  ARRAY_SIZE(ARRAY_INTERSECTION(COLLECTION_STAGE.INVOLVED_FILES, ENCRYPTION_STAGE.INVOLVED_FILES)) >= MIN(ARRAY_SIZE(COLLECTION_STAGE.INVOLVED_FILES), ARRAY_SIZE(ENCRYPTION_STAGE.INVOLVED_FILES)) * 0.75
